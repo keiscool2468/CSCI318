@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Welcome to the Task List!! Sunny</ion-title>
+  </ion-navbar>
+  <form (ngSubmit)="createTask()">
+    <ion-item>
+      <ion-label>Task</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.task" name="task"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Assign to Who</ion-label>
+      <ion-select [(ngModel)]="todo.user" name="user">
+        <ion-option *ngFor="let person of people">{{person.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Due date?</ion-label>
+      <ion-input type="date" [(ngModel)]="todo.due" name="due"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Add Todo</button>
+  </form>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+    <ion-row>
+      <ion-col>
+        <strong>Task Name</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Assign By</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Due Date</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Action</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let task of tasks" >
+      <ion-col>
+        {{task.task}}
+      </ion-col>
+      <ion-col>
+        {{task.user}}
+      </ion-col>
+      <ion-col>
+        {{task.due}}
+      </ion-col>
+      <ion-col>
+        <button ion-button color="secondary" class="task" (click)="done(task)">Done</button>
+        <button ion-button class="task edit" (click)="edit(tasks, task)">Edit</button>
+      </ion-col>
+    </ion-row>
+</ion-content>

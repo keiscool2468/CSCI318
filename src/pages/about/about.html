@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Edit Task {{task.task}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="editTask()">
+    <ion-item>
+      <ion-label>Task</ion-label>
+      <ion-input type="text" [(ngModel)]="task.task" name="task"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Assign to Who</ion-label>
+      <ion-select [(ngModel)]="task.user" name="user" >
+        <!--<ion-option ng-selected="selected">{{task.user}}</ion-option>-->
+        <ion-option *ngFor="let person of people">{{person.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Due date?</ion-label>
+      <ion-input type="date" [(ngModel)]="task.due" name="due"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Edit Task</button>
+  </form>
+</ion-content>

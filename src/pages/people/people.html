@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Or Edit people here</ion-title>
+  </ion-navbar>
+  <form (ngSubmit)="createPeople()">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="person.name" name="people"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Add People</button>
+  </form>
+</ion-header>
+
+<ion-content padding>
+    <ion-row>
+      <ion-col>
+        <strong>People Name</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Action</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let person of people" >
+      <ion-col>
+        {{person.name}}
+      </ion-col>
+      <ion-col>
+        <button ion-button color="danger" class="task" (click)="delete(person)">Delete</button>
+      </ion-col>
+    </ion-row>
+</ion-content>
